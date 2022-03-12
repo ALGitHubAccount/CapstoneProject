@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "username")})
+@Table  //(uniqueConstraints = {@UniqueConstraint(columnNames = "username")})
 public abstract class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +35,6 @@ public abstract class User {
 	@NotBlank
 	@JsonIgnore
 	private String password;
-	@OneToMany
+	@ManyToMany
 	private Set<Role> roles;
 }
